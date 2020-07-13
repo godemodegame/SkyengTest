@@ -1,0 +1,51 @@
+excluded:
+    - Pods
+    - R.generated.swift
+
+disabled_rules:
+    - trailing_whitespace
+    - trailing_newline
+    - vertical_whitespace
+    - line_length
+
+identifier_name:
+    excluded:
+    - id
+
+custom_rules:
+    final_class:
+        included: ".*.swift"
+        name: "Final class requrement"
+        regex: '^class'
+        message: "All classes must be final or nonfinal"
+        saverity: error
+    
+    required_init:
+        regex: 'required init\?\(coder: NSCoder\)'
+        message: "Use NL class instead"
+    
+    foundation_using:
+        included: ".*.swift"
+        regex: 'import Foundation'
+        message: "Do you really need for Foundation ???"
+    
+    print_using:
+        regex: 'print'
+        message: "Print decrease performance of the app"
+    
+    class_protocol:
+        regex: ': class'
+        message: "Use Anyobject instead"
+    
+    comments_space:
+        name: "Space After Comment"
+        regex: '(^ *//\w+)'
+        message: "There should be a space after //"
+        severity: warning
+
+    image_name_initialization:
+        included: ".*.swift"
+        name: "Image initialization without R.swift"
+        regex: 'UIImage\(named:[^)]+\)'
+        message: "Use R.image.name() or typealias of this instead"
+        severity: error
